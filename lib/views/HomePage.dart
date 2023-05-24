@@ -1,42 +1,19 @@
-
 import 'package:flutter/material.dart';
+import '../widgets/navigationBar.dart';
 
 class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home'),
+        title: const Text('Home'),
       ),
-      body: Center(
+      body: const Center(
         child: Text('Home Page'),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
-        onTap: (index) {
-          if (index == 0) {
-            Navigator.pushReplacementNamed(context, '/home');
-          } else if (index == 1) {
-            Navigator.pushReplacementNamed(context, '/combine');
-          } else if (index == 2) {
-            Navigator.pushReplacementNamed(context, '/wardrobe');
-          }
-        },
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.compare_arrows),
-            label: 'Combine',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.gif_box_rounded),
-            label: 'Wardrobe',
-          ),
-        ],
-      ),
+      bottomNavigationBar: navigationBar(),
     );
   }
 }

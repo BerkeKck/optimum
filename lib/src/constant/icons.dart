@@ -1,6 +1,8 @@
 class IconlyBroken {
   static const String _assetPath = 'assets/icons/';
 
+  static const String combine = '${_assetPath}combine_icon.svg';
+  static const String wardrobe = '${_assetPath}wardrobe_icon.svg';
   static const String search = '${_assetPath}search-normal-1.svg';
   static const String notification = '${_assetPath}notification-1.svg';
   static const String setting = '${_assetPath}setting-2.svg';

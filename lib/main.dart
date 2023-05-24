@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'views/CombinePage.dart';
-import 'views/HomePage.dart';
-import 'views/WardrobePage.dart';
+import 'package:optimum/views/HomePage.dart';
+import 'package:optimum/views/wardrobePage.dart';
+import 'package:optimum/views/combinePage.dart';
+void main() => runApp(Optimum());
+  
+class Optimum extends StatelessWidget {
+  const Optimum({super.key});
 
-void main() {
-  runApp(NavigationBarApp());
-}
-
-class NavigationBarApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

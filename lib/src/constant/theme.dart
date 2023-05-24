@@ -9,18 +9,18 @@ class ThemeClass {
       fontFamily: "Nunito",
       applyElevationOverlayColor: false,
       brightness: isDarkTheme ? Brightness.dark : Brightness.light,
-      colorSchemeSeed: ColorConst.primary,
+      colorSchemeSeed: ColorConst.gray,
       appBarTheme: AppBarTheme(
         elevation: 0.0,
         backgroundColor:
-            isDarkTheme ? ColorConst.scaffoldDark : ColorConst.drawerBG,
+            isDarkTheme ? ColorConst.white : ColorConst.black,
       ),
       scaffoldBackgroundColor:
-          isDarkTheme ? ColorConst.scaffoldDark : ColorConst.drawerBG,
+          isDarkTheme ? ColorConst.white : ColorConst.black,
       cardTheme: CardTheme.of(context).copyWith(
         margin: EdgeInsets.zero,
-        color: isDarkTheme ? ColorConst.cardDark : Colors.white,
-        surfaceTintColor: isDarkTheme ? ColorConst.cardDark : Colors.white,
+        color: isDarkTheme ? ColorConst.white : Colors.black,
+        surfaceTintColor: isDarkTheme ? ColorConst.white : Colors.black,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(4.0),
         ),
