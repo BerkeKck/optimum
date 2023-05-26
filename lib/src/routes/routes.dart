@@ -1,9 +1,11 @@
 
-import 'package:optimum/views/combinePage.dart';
-import 'package:optimum/views/homePage.dart';
-import 'package:optimum/views/wardrobePage.dart';
+import 'package:optimum/views/combine_page.dart';
+import 'package:optimum/views/home_page.dart';
+import 'package:optimum/views/wardrobe_page.dart';
 
 import 'package:flutter/material.dart';
+
+
 
 class AppRoutes {
   static const String home = '/home';

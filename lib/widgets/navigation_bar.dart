@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class navigationBar extends StatelessWidget {
-  const navigationBar({Key? key}) : super(key: key);
+class NavigationBar extends StatelessWidget {
+  const NavigationBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -9,11 +9,11 @@ class navigationBar extends StatelessWidget {
       currentIndex: 0,
       onTap: (index) {
         if (index == 0) {
-          Navigator.pushReplacementNamed(context, '/home');
+          Navigator.pushNamed(context, '/home');
         } else if (index == 1) {
-          Navigator.pushReplacementNamed(context, '/combine');
+          Navigator.pushNamed(context, '/combine');
         } else if (index == 2) {
-          Navigator.pushReplacementNamed(context, '/wardrobe');
+          Navigator.pushNamed(context, '/wardrobe');
         }
       },
       items: [
@@ -27,7 +27,7 @@ class navigationBar extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           icon: Image.asset('assets/images/wardrobe.png', width: 24, height: 24),
-          label: 'Wardrobe',
+          label: 'Wardrobe',  
         ),
       ],
     );

@@ -9,6 +9,9 @@ class Strings {
   static const String homePage = 'Home';
   static const String combinePage = 'Combine';
   static const String wardrobePage = 'Wardrobe';
-
+    //categories
+  static const String all_items = 'all_items';
+  static const String dress_selected = 'dress_selected';
+  static const String dress_unselected = 'dress_unselected';
 
 }

@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:optimum/widgets/navigationBar.dart';
+import '../widgets/navigation_bar.dart' as optNavigation;
 
 class WardrobePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Wardrobe'),
-      ),
+    return const Scaffold(
+    bottomNavigationBar: optNavigation.NavigationBar(),
       body: Center(
         child: Text('Wardrobe Page'),
       ),
-      bottomNavigationBar: navigationBar(),
     );
   }
 }
