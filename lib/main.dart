@@ -26,10 +26,3 @@ Widget build(BuildContext context) {
     );
   }
 }
-
-
-//  routes: {
-//         '/home': (context) => homePage(),
-//         '/combine': (context) => CombinePage(),
-//         '/wardrobe': (context) => WardrobePage(),
-//       },
