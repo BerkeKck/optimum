@@ -20,10 +20,10 @@ class IconlyBroken {
   static const String heart = '${_assetPath}Heart.svg';
   static const String filter = '${_assetPath}Filter.svg';
   static const String notifications = '${_assetPath}Notification.svg';
-  
+
 //categories
-  static const String dress = '${_assetPath}dress.svg';
-  static const String shirt = '${_assetPath}shirt.svg';
-  static const String pants = '${_assetPath}pants.svg';
+  static const String dress = '${_assetPath}Dress.svg';
+  static const String shirt = '${_assetPath}Shirt.svg';
+  static const String pants = '${_assetPath}Pants.svg';
   static const String tshirt = '${_assetPath}Tshirt.svg';
 }

@@ -77,36 +77,37 @@ String _getWeatherIcon(String condition) {
   Widget build(BuildContext context) {
   // AppBar
   AppBar _buildAppBar(String weatherCondition, String cityName) {
-    final weatherIcon = _getWeatherIcon(weatherCondition);
+  final weatherIcon = _getWeatherIcon(weatherCondition);
 
-    return AppBar(
-      title: Text(
-        cityName,
-        style: kEncodeSansRegularBold.copyWith(
-          color: kDarkBrown,
-          fontSize: SizeConfig.blockSizeHorizontal! * 2.5,
+  return AppBar(
+    backgroundColor: Colors.grey, // Set the background color to grey
+    title: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SvgPicture.asset(
+          'assets/icons/$weatherIcon',
+          width: 24,
+          height: 24,
         ),
-      ),
-      centerTitle: true,
-      leading: const Icon(Icons.menu),
-      actions: const [
-        Icon(Icons.notifications),
+        const SizedBox(width: 4),
+        Text(
+          cityName,
+          style: kEncodeSansBold.copyWith(
+            color: kDarkBrown,
+            fontSize: SizeConfig.blockSizeHorizontal! * 2.5,
+          ),
+        ),
       ],
-      bottom: PreferredSize(
-        preferredSize: const Size.fromHeight(60),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SvgPicture.asset(
-              'assets/icons/$weatherIcon',
-              width: 48,
-              height: 48,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+    ),
+    centerTitle: true,
+    leading: Container(), // Remove the leading back button
+    bottom: const PreferredSize(
+      preferredSize: Size.fromHeight(0),
+      child: SizedBox(),
+    ),
+  );
+}
+
 
   // Fetch weather condition
   Future<String> fetchWeatherCondition(String cityName) async {
@@ -148,7 +149,7 @@ PreferredSizeWidget _buildAppBarWithWeather(String cityName) {
 
   return Scaffold(
     bottomNavigationBar: optNavigation.NavigationBar(),
-    appBar: _buildAppBarWithWeather('Istanbul'), // Replace with actual city name or dynamic value
+    appBar: _buildAppBarWithWeather('Istanbul'), // Şehir İsmi
     body: SafeArea(
       child: ListView(
         children: [
@@ -164,17 +165,12 @@ PreferredSizeWidget _buildAppBarWithWeather(String cityName) {
                   children: [
                     Text(
                       'Welcome To Optimum',
-                      style: kEncodeSansRegularBold.copyWith(
+                      style: kEncodeSansBold.copyWith(
                         color: kDarkBrown,
                         fontSize: SizeConfig.blockSizeHorizontal! * 2.5,
                       ),
                     ),
                   ],
-                ),
-                const CircleAvatar(
-                  radius: 20,
-                  backgroundColor: kGrey,
-                  backgroundImage: NetworkImage('https://picsum.photos/id/237/200/300'),
                 ),
               ],
             ),
