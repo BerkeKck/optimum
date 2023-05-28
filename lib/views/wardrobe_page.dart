@@ -3,12 +3,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:optimum/src/constant/image.dart';
 import '../widgets/navigation_bar.dart' as optNavigation;
 
-
 class WardrobePage extends StatefulWidget {
-  const WardrobePage({super.key});
+  const WardrobePage({Key? key}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
   _WardrobePageState createState() => _WardrobePageState();
 }
 
@@ -16,7 +14,7 @@ class _WardrobePageState extends State<WardrobePage> {
   int _selectedCategoryIndex = 0;
   final List<String> _categories = [
     'All',
-    'TShirt',
+    'Tshirt',
     'Pants',
     'Shoes',
     'Skirt',
@@ -45,7 +43,7 @@ class _WardrobePageState extends State<WardrobePage> {
       // Filter photos based on selected category
       String selectedCategory = _categories[_selectedCategoryIndex];
       switch (selectedCategory) {
-        case 'TShirt':
+        case 'Tshirt':
           _photos = Images.tshirtImages;
           break;
         case 'Pants':
@@ -69,115 +67,115 @@ class _WardrobePageState extends State<WardrobePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: optNavigation.NavigationBar(), // Custom navigation bar
+      bottomNavigationBar: optNavigation.NavigationBar(),
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(10.0),
+        preferredSize: Size.fromHeight(45.0),
         child: AppBar(
-          backgroundColor: const Color.fromARGB(255, 156, 156, 156),
-          automaticallyImplyLeading: false, // Hide the default back button
+          backgroundColor: Color.fromARGB(255, 122, 122, 122),
+          automaticallyImplyLeading: false,
+          title: Text(
+            'My Wardrobe',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20.0,
+            ),
+          ),
+          centerTitle: true,
         ),
       ),
       body: Container(
-        color: Colors.grey[200], // Set the background color to grey
+        color: Color.fromARGB(255, 142, 142, 142),
         child: Column(
           children: [
-            Container(
-              height: 40.0,
-              child: Row(
-                children: [
-                  _buildCategoryList(),
-                  _buildCameraButton(),
-                ],
+            Padding(
+              padding: EdgeInsets.only(top: 3.0, bottom: 3.0),
+              child: Container(
+                height: 25.0,
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: _categories.length,
+                  itemBuilder: (context, index) {
+                    bool isSelected = index == _selectedCategoryIndex;
+                    String categoryName = _categories[index];
+
+                    return GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _selectedCategoryIndex = index;
+                          generatePhotoPaths();
+                        });
+                      },
+                      child: Container(
+                        padding: EdgeInsets.symmetric(horizontal: 16.0),
+                        decoration: BoxDecoration(
+                          color: isSelected ? Colors.white : null,
+                          borderRadius: BorderRadius.circular(30.0),
+                        ),
+                        child: Text(
+                          categoryName,
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                            color: isSelected ? Colors.black : Colors.white,
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
-            _buildContent(),
+            Expanded(
+              child: PageView.builder(
+                itemCount: _categories.length,
+                controller: PageController(initialPage: _selectedCategoryIndex),
+                onPageChanged: (index) {
+                  setState(() {
+                    _selectedCategoryIndex = index;
+                    generatePhotoPaths();
+                  });
+                },
+                itemBuilder: (context, index) {
+                  String categoryName = _categories[index];
+
+                  return GridView.builder(
+                    padding: const EdgeInsets.all(8.0),
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 8.0,
+                      mainAxisSpacing: 8.0,
+                      childAspectRatio: 0.8,
+                    ),
+                    itemCount: _photos.length,
+                    itemBuilder: (context, index) {
+                      String photoPath = _photos[index];
+                      return Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8.0),
+                          image: DecorationImage(
+                            image: AssetImage(photoPath),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                },
+              ),
+            ),
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildCategoryList() {
-    return Expanded(
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: _categories.length,
-        itemBuilder: (context, index) {
-          bool isSelected = index == _selectedCategoryIndex;
-          String iconName = _categories[index].toLowerCase() + '.svg'; // Generate icon name based on category
-          return GestureDetector(
-            onTap: () {
-              setState(() {
-                _selectedCategoryIndex = index;
-                generatePhotoPaths(); // Regenerate photo paths when category changes
-              });
-            },
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 8.0),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.white), // Set border color to white
-                color: isSelected ? Colors.white : null, // Set background color to white if selected
-              ),
-              child: Row(
-                children: [
-                  SvgPicture.asset(
-                    'assets/icons/$iconName', // Load icon from assets/icons folder
-                    width: 24.0,
-                    height: 24.0,
-                  ),
-                  SizedBox(width: 8.0),
-                  Text(
-                    _categories[index],
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-                      color: isSelected ? Colors.black : null, // Set text color to black if selected
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          );
-        },
-      ),
-    );
-  }
-
-  Widget _buildCameraButton() {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: IconButton(
-        icon: const Icon(Icons.camera),
-        onPressed: () {
-          // telefonda kamera uygulamasını açma işlevi
-        },
-      ),
-    );
-  }
-
-  Widget _buildContent() {
-    return Expanded(
-      child: GridView.builder(
-        padding: const EdgeInsets.all(8.0),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2, // Number of photos per row
-          crossAxisSpacing: 8.0, // Adjust the horizontal spacing between photos
-          mainAxisSpacing: 8.0, // Adjust the vertical spacing between photos
-          childAspectRatio: 0.8, // Adjust the aspect ratio for photo size
+      floatingActionButton: Container(
+        margin: EdgeInsets.only(right: 10.0, bottom: 10.0),
+        child: FloatingActionButton(
+          onPressed: () {
+            // Add button action
+          },
+          backgroundColor: Colors.grey,
+          child: Icon(Icons.add),
         ),
-        itemCount: _photos.length,
-        itemBuilder: (context, index) {
-          String photoPath = _photos[index];
-          return Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8.0), // Apply border radius for smoother edges
-              image: DecorationImage(
-                image: AssetImage(photoPath),
-                fit: BoxFit.cover,
-              ),
-            ),
-          );
-        },
       ),
     );
   }

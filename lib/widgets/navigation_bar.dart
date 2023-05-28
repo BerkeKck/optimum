@@ -6,7 +6,7 @@ class NavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      key: key, // Pass the 'key' argument to the BottomNavigationBar widget
+      key: key,
       currentIndex: 0,
       selectedItemColor: Colors.black,
       unselectedItemColor: Colors.black,
