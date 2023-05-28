@@ -17,11 +17,11 @@ class AppRoutes {
   static Route<dynamic>? generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case home:
-        return MaterialPageRoute(builder: (_) => HomePage());
+        return MaterialPageRoute(builder: (_) => const HomePage());
       case combine:
-        return MaterialPageRoute(builder: (_) => CombinePage());
+        return MaterialPageRoute(builder: (_) => const CombinePage());
       case wardrobe:
-        return MaterialPageRoute(builder: (_) => WardrobePage());
+        return MaterialPageRoute(builder: (_) => const WardrobePage());
       default:HomePage; 
         return null;
     }

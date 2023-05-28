@@ -3,8 +3,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:optimum/src/constant/image.dart';
 import '../widgets/navigation_bar.dart' as optNavigation;
 
+
 class WardrobePage extends StatefulWidget {
+  const WardrobePage({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _WardrobePageState createState() => _WardrobePageState();
 }
 
@@ -67,8 +71,9 @@ class _WardrobePageState extends State<WardrobePage> {
     return Scaffold(
       bottomNavigationBar: optNavigation.NavigationBar(), // Custom navigation bar
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(0.0),
+        preferredSize: Size.fromHeight(10.0),
         child: AppBar(
+          backgroundColor: const Color.fromARGB(255, 156, 156, 156),
           automaticallyImplyLeading: false, // Hide the default back button
         ),
       ),
@@ -104,6 +109,7 @@ class _WardrobePageState extends State<WardrobePage> {
             onTap: () {
               setState(() {
                 _selectedCategoryIndex = index;
+                generatePhotoPaths(); // Regenerate photo paths when category changes
               });
             },
             child: Container(
@@ -139,45 +145,40 @@ class _WardrobePageState extends State<WardrobePage> {
 
   Widget _buildCameraButton() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: IconButton(
-        icon: Icon(Icons.camera),
+        icon: const Icon(Icons.camera),
         onPressed: () {
-          // Handle camera button tap
-          print('Camera button tapped');
+          // telefonda kamera uygulamasını açma işlevi
         },
       ),
     );
   }
 
   Widget _buildContent() {
-  List<String> filteredPhotos;
-  if (_selectedCategoryIndex == 0) {
-    // All category selected, show all photos
-    filteredPhotos = _photos;
-  } else {
-    // Filter photos based on selected category
-    String selectedCategory = _categories[_selectedCategoryIndex].toLowerCase();
-    filteredPhotos = _photos.where((photo) => photo.toLowerCase().contains(selectedCategory)).toList();
-  }
-
-  return Expanded(
-    child: ListView.builder(
-      itemCount: filteredPhotos.length,
-      itemBuilder: (context, index) {
-        String photoPath = filteredPhotos[index];
-        return Container(
-          margin: EdgeInsets.symmetric(vertical: 8.0),
-          height: 200.0,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(photoPath),
-              fit: BoxFit.cover,
+    return Expanded(
+      child: GridView.builder(
+        padding: const EdgeInsets.all(8.0),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2, // Number of photos per row
+          crossAxisSpacing: 8.0, // Adjust the horizontal spacing between photos
+          mainAxisSpacing: 8.0, // Adjust the vertical spacing between photos
+          childAspectRatio: 0.8, // Adjust the aspect ratio for photo size
+        ),
+        itemCount: _photos.length,
+        itemBuilder: (context, index) {
+          String photoPath = _photos[index];
+          return Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8.0), // Apply border radius for smoother edges
+              image: DecorationImage(
+                image: AssetImage(photoPath),
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-        );
-      },
-    ),
-  );
-}
+          );
+        },
+      ),
+    );
+  }
 }

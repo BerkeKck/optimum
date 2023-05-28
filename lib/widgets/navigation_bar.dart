@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 
 class NavigationBar extends StatelessWidget {
-  const NavigationBar({super.key});
+  const NavigationBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      key: key, // Pass the 'key' argument to the BottomNavigationBar widget
       currentIndex: 0,
+      selectedItemColor: Colors.black,
+      unselectedItemColor: Colors.black,
       onTap: (index) {
         if (index == 0) {
           Navigator.pushNamed(context, '/home');
@@ -27,7 +30,7 @@ class NavigationBar extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           icon: Image.asset('assets/images/wardrobe.png', width: 24, height: 24),
-          label: 'Wardrobe',  
+          label: 'Wardrobe',
         ),
       ],
     );
