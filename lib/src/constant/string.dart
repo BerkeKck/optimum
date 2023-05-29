@@ -15,4 +15,5 @@ class Strings {
   static const String shoe = 'shoe';
   static const String dress = 'dress';
   static const String skirt = 'skirt';
+  static const String handbag = 'handbags';
 }

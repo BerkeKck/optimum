@@ -1,5 +1,3 @@
-import 'dart:io';
-
 class Images {
   static const String _assetPath = 'assets/images/';
 
@@ -9,7 +7,7 @@ class Images {
   static const String combine = 'combine.png';
   static const String home = 'home.png';
 
-   static const List<String> tshirtImages = [
+  static List<String> tshirtImages = [
     'assets/photos/Tshirt-1.jpg',
     'assets/photos/Tshirt-2.jpg',
     'assets/photos/Tshirt-3.jpg',
@@ -19,14 +17,14 @@ class Images {
     'assets/photos/Tshirt-7.jpg',
   ];
 
-  static const List<String> pantsImages = [
+  static List<String> pantsImages = [
     'assets/photos/Pants-1.jpg',
     'assets/photos/Pants-2.jpg',
     'assets/photos/Pants-3.jpg',
     'assets/photos/Pants-4.jpg',
   ];
 
-  static const List<String> shoesImages = [
+  static List<String> shoesImages = [
     'assets/photos/Shoes-1.jpg',
     'assets/photos/Shoes-2.jpg',
     'assets/photos/Shoes-3.jpg',
@@ -38,28 +36,36 @@ class Images {
     'assets/photos/Shoes-9.jpg',
   ];
 
-  static const List<String> dressImages = [
+  static List<String> dressImages = [
     'assets/photos/Dress-1.jpg',
     'assets/photos/Dress-2.jpg',
     'assets/photos/Dress-3.jpg',
     'assets/photos/Dress-4.jpg',
   ];
 
-  static const List<String> skirtsImages = [
+  static List<String> skirtsImages = [
     'assets/photos/Skirts-1.jpg',
     'assets/photos/Skirts-2.jpg',
   ];
 
-  static void generateTshirtImagePaths() {
-    final directory = Directory('assets/photos/tshirt/');
-    final files = directory.listSync();
+  static List<String> handbagImages = [
+    'assets/photos/Handbag-1.png',
+    'assets/photos/Handbag-2.png',
+    'assets/photos/Handbag-3.png',
+    'assets/photos/Handbag-4.png',
+    'assets/photos/Handbag-5.png',
+    'assets/photos/Handbag-6.png',
+    'assets/photos/Handbag-7.png',
+    'assets/photos/Handbag-8.png',
+    'assets/photos/Handbag-9.png',
+  ];
 
-    for (final file in files) {
-      if (file is File && file.path.endsWith('.jpg')) {
-        tshirtImages.add(file.path);
-      }
-    }
-  }
+  static List<String> allImages = [
+    ...tshirtImages,
+    ...pantsImages,
+    ...shoesImages,
+    ...dressImages,
+    ...skirtsImages,
+    ...handbagImages,
+  ];
 }
-
-

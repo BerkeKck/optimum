@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
   // Update AppBar based on weather condition
   PreferredSizeWidget _buildAppBarWithWeather(String cityName) {
     return PreferredSize(
-      preferredSize: const Size.fromHeight(60),
+      preferredSize: const Size.fromHeight(45),
       child: FutureBuilder<String>(
         future: fetchWeatherCondition(cityName),
         builder: (context, snapshot) {

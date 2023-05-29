@@ -28,24 +28,33 @@ class _OptimumState extends State<Optimum> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          selectedItemColor: const Color.fromARGB(255, 0, 0, 0), // Customize the selected item color
+          unselectedItemColor: Colors.grey, // Customize the unselected item color
+          selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold), // Customize the selected label style
+          showSelectedLabels: true, // Show labels for selected items only
+          showUnselectedLabels: false, // Hide labels for unselected items
+        ),
+      ),
       home: Scaffold(
         body: _pages[_currentIndex],
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _currentIndex,
           onTap: _onTabTapped,
-            items: [
-        BottomNavigationBarItem(
-          icon: Image.asset('assets/images/home.png', width: 24, height: 24),
-          label:'Home',
-        ),
-        BottomNavigationBarItem(
-          icon: Image.asset('assets/images/combine.png', width: 24, height: 24),
-          label:'Combine',
-        ),
-        BottomNavigationBarItem(
-          icon: Image.asset('assets/images/wardrobe.png', width: 24, height: 24),
-          label:'Wardrobe',
-        ),
+          items: [
+            BottomNavigationBarItem(
+              icon: Image.asset('assets/images/home.png', width: 24, height: 24),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Image.asset('assets/images/combine.png', width: 24, height: 24),
+              label: 'Combine',
+            ),
+            BottomNavigationBarItem(
+              icon: Image.asset('assets/images/wardrobe.png', width: 24, height: 24),
+              label: 'Wardrobe',
+            ),
           ],
         ),
       ),

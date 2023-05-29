@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:optimum/src/constant/image.dart';
 
 class WardrobePage extends StatefulWidget {
@@ -11,6 +10,7 @@ class WardrobePage extends StatefulWidget {
 
 class _WardrobePageState extends State<WardrobePage> {
   int _selectedCategoryIndex = 0;
+
   final List<String> _categories = [
     'All',
     'Tshirt',
@@ -18,10 +18,10 @@ class _WardrobePageState extends State<WardrobePage> {
     'Shoes',
     'Skirt',
     'Dress',
+    'Handbags'
   ];
 
   List<String> _photos = [];
-
   @override
   void initState() {
     super.initState();
@@ -37,6 +37,7 @@ class _WardrobePageState extends State<WardrobePage> {
         ...Images.shoesImages,
         ...Images.dressImages,
         ...Images.skirtsImages,
+        ...Images.handbagImages,
       ];
     } else {
       // Filter photos based on selected category
@@ -53,6 +54,9 @@ class _WardrobePageState extends State<WardrobePage> {
           break;
         case 'Dress':
           _photos = Images.dressImages;
+          break;
+        case 'Handbag':
+          _photos = Images.handbagImages;
           break;
         case 'Skirt':
           _photos = Images.skirtsImages;
@@ -177,4 +181,4 @@ class _WardrobePageState extends State<WardrobePage> {
       ),
     );
   }
-}
+} 
