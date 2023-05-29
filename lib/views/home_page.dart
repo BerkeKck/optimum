@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:optimum/size_config.dart';
 import '../app_styles.dart';
-import '../widgets/navigation_bar.dart' as optNavigation;
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
@@ -156,7 +155,6 @@ class _HomePageState extends State<HomePage> {
     String cityName = 'Paris'; // Assign the desired city name here
 
     return Scaffold(
-      bottomNavigationBar: optNavigation.NavigationBar(),
       appBar: _buildAppBarWithWeather(cityName),
       body: SafeArea(
         child: ListView(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:optimum/src/constant/image.dart';
-import '../widgets/navigation_bar.dart' as optNavigation;
 
 class WardrobePage extends StatefulWidget {
   const WardrobePage({Key? key}) : super(key: key);
@@ -66,7 +66,6 @@ class _WardrobePageState extends State<WardrobePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: optNavigation.NavigationBar(),
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(45.0),
         child: AppBar(
