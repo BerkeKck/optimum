@@ -5,6 +5,11 @@ class NavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currentRoute = ModalRoute.of(context)?.settings.name;
+    final isHomePage = currentRoute == '/home';
+    final isCombinePage = currentRoute == '/combine';
+    final isWardrobePage = currentRoute == '/wardrobe';
+
     return BottomNavigationBar(
       key: key,
       currentIndex: 0,
@@ -22,15 +27,15 @@ class NavigationBar extends StatelessWidget {
       items: [
         BottomNavigationBarItem(
           icon: Image.asset('assets/images/home.png', width: 24, height: 24),
-          label: 'Home',
+          label: isHomePage ? '' : 'Home',
         ),
         BottomNavigationBarItem(
           icon: Image.asset('assets/images/combine.png', width: 24, height: 24),
-          label: 'Combine',
+          label: isCombinePage ? '' : 'Combine',
         ),
         BottomNavigationBarItem(
           icon: Image.asset('assets/images/wardrobe.png', width: 24, height: 24),
-          label: 'Wardrobe',
+          label: isWardrobePage ? '' : 'Wardrobe',
         ),
       ],
     );
