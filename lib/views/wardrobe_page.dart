@@ -15,6 +15,8 @@ class _WardrobePageState extends State<WardrobePage> {
     'All',
     'Tshirt',
     'Tops',
+    'Coat',
+    'Hoodie',
     'Pants',
     'Shoes',
     'Skirt',
@@ -39,6 +41,8 @@ class _WardrobePageState extends State<WardrobePage> {
         ...Photos.dressPhotos,
         ...Photos.skirtsPhotos,
         ...Photos.handbagPhotos,
+        ...Photos.coatPhotos,
+        ...Photos.hoodiePhotos,
       ];
     } else {
       // Filter photos based on selected category
@@ -49,6 +53,9 @@ class _WardrobePageState extends State<WardrobePage> {
           break;
         case 'Pants':
           _photos = Photos.pantsPhotos;
+          break;
+        case 'Coat':
+          _photos = Photos.coatPhotos;
           break;
         case 'Shoes':
           _photos = Photos.shoesPhotos;
@@ -61,6 +68,9 @@ class _WardrobePageState extends State<WardrobePage> {
           break;
         case 'Skirt':
           _photos = Photos.skirtsPhotos;
+          break;
+        case 'Hoodie':
+          _photos = Photos.hoodiePhotos;
           break;
         case 'Tops':
           _photos = Photos.topPhotos;

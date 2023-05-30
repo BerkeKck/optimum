@@ -2,13 +2,15 @@ class Photos {
   static const String _assetPath = '/photos/';
 
 
-  static List<String> tshirtPhotos = generateAssetPaths('Tshirt', 7);
-  static List<String> pantsPhotos = generateAssetPaths('Pants', 4);
-  static List<String> shoesPhotos = generateAssetPaths('Shoes', 9);
-  static List<String> dressPhotos = generateAssetPaths('Dress', 4);
-  static List<String> skirtsPhotos = generateAssetPaths('Skirt', 10);
+  static List<String> tshirtPhotos = generateAssetPaths('Tshirt', 5);
+  static List<String> pantsPhotos = generateAssetPaths('Pants', 8);
+  static List<String> shoesPhotos = generateAssetPaths('Shoes', 8);
+  static List<String> dressPhotos = generateAssetPaths('Dress', 6);
+  static List<String> skirtsPhotos = generateAssetPaths('Skirt', 8);
   static List<String> handbagPhotos = generateAssetPaths('Handbags', 9);
-  static List<String> topPhotos = generateAssetPaths('Top', 6);
+  static List<String> topPhotos = generateAssetPaths('Top', 10);
+  static List<String> coatPhotos = generateAssetPaths('Coat', 3); 
+  static List<String> hoodiePhotos = generateAssetPaths('Hoodie', 6); 
 
   static List<String> allPhotos = [
     ...tshirtPhotos,
@@ -18,6 +20,9 @@ class Photos {
     ...skirtsPhotos,
     ...handbagPhotos,
     ...topPhotos,
+    ...coatPhotos,
+    ...hoodiePhotos,
+
   ];
 
   static List<String> generateAssetPaths(String category, int count) {
