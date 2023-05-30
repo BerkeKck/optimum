@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:optimum/src/constant/image.dart';
+import 'package:optimum/src/constant/photos.dart';
 
 class WardrobePage extends StatefulWidget {
   const WardrobePage({Key? key}) : super(key: key);
@@ -32,34 +32,34 @@ class _WardrobePageState extends State<WardrobePage> {
     if (_selectedCategoryIndex == 0) {
       // All category selected, show all photos
       _photos = [
-        ...Images.tshirtImages,
-        ...Images.pantsImages,
-        ...Images.shoesImages,
-        ...Images.dressImages,
-        ...Images.skirtsImages,
-        ...Images.handbagImages,
+        ...Photos.tshirtPhotos,
+        ...Photos.pantsPhotos,
+        ...Photos.shoesPhotos,
+        ...Photos.dressPhotos,
+        ...Photos.skirtsPhotos,
+        ...Photos.handbagPhotos,
       ];
     } else {
       // Filter photos based on selected category
       String selectedCategory = _categories[_selectedCategoryIndex];
       switch (selectedCategory) {
         case 'Tshirt':
-          _photos = Images.tshirtImages;
+          _photos = Photos.tshirtPhotos;
           break;
         case 'Pants':
-          _photos = Images.pantsImages;
+          _photos = Photos.pantsPhotos;
           break;
         case 'Shoes':
-          _photos = Images.shoesImages;
+          _photos = Photos.shoesPhotos;
           break;
         case 'Dress':
-          _photos = Images.dressImages;
+          _photos = Photos.dressPhotos;
           break;
         case 'Handbag':
-          _photos = Images.handbagImages;
+          _photos = Photos.skirtsPhotos;
           break;
         case 'Skirt':
-          _photos = Images.skirtsImages;
+          _photos = Photos.handbagPhotos;
           break;
         default:
           _photos = [];
