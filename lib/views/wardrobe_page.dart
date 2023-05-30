@@ -14,11 +14,12 @@ class _WardrobePageState extends State<WardrobePage> {
   final List<String> _categories = [
     'All',
     'Tshirt',
+    'Tops',
     'Pants',
     'Shoes',
     'Skirt',
     'Dress',
-    'Handbags'
+    'Handbags',
   ];
 
   List<String> _photos = [];
@@ -55,11 +56,14 @@ class _WardrobePageState extends State<WardrobePage> {
         case 'Dress':
           _photos = Photos.dressPhotos;
           break;
-        case 'Handbag':
-          _photos = Photos.skirtsPhotos;
+        case 'Handbags':
+          _photos = Photos.handbagPhotos;
           break;
         case 'Skirt':
-          _photos = Photos.handbagPhotos;
+          _photos = Photos.skirtsPhotos;
+          break;
+        case 'Tops':
+          _photos = Photos.topPhotos;
           break;
         default:
           _photos = [];
