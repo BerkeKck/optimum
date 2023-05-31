@@ -10,8 +10,7 @@ class WardrobePage extends StatefulWidget {
 
 class _WardrobePageState extends State<WardrobePage> {
   int _selectedCategoryIndex = 0;
-
-  final List<String> _categories = [
+  List<String> _categories = [
     'All',
     'Tshirt',
     'Tops',
@@ -25,6 +24,7 @@ class _WardrobePageState extends State<WardrobePage> {
   ];
 
   List<String> _photos = [];
+
   @override
   void initState() {
     super.initState();
@@ -80,6 +80,34 @@ class _WardrobePageState extends State<WardrobePage> {
       }
     }
   }
+
+  void _showAddOptions() {
+  showModalBottomSheet<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return Container(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            ListTile(
+              leading: Icon(Icons.camera),
+              title: Text('Open Camera'),
+              onTap: () {
+                // Handle open camera option
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.image),
+              title: Text('Select from Gallery'),
+              onTap: () {
+              },
+            ),
+          ],
+        ),
+      );
+    },
+  );
+}
 
   @override
   Widget build(BuildContext context) {
@@ -186,13 +214,11 @@ class _WardrobePageState extends State<WardrobePage> {
       floatingActionButton: Container(
         margin: EdgeInsets.only(right: 10.0, bottom: 10.0),
         child: FloatingActionButton(
-          onPressed: () {
-            // Add button action
-          },
+          onPressed: _showAddOptions,
           backgroundColor: Colors.grey,
           child: Icon(Icons.add),
         ),
       ),
     );
   }
-} 
+}

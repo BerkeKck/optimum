@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:optimum/src/constant/photos.dart';
 
 import 'package:optimum/app_styles.dart';
 
@@ -80,7 +81,7 @@ class _HomePageState extends State<HomePage> {
                     margin: const EdgeInsets.all(60),
                     child: SvgPicture.asset(
                       'assets/icons/${_getWeatherIcon(weatherCondition)}',
-                      width: 60, // Increase the size of the weather icon
+                      width: 60, 
                       height: 60,
                     ),
                   ),
@@ -129,68 +130,22 @@ class _HomePageState extends State<HomePage> {
 
   String _getWeatherText(String condition) {
     if (condition.contains('rain')) {
-      return 'rainy. \n☂️Don\'t forget your umbrella ☂️!';
+      return 'rainy \n☂️Don\'t forget your umbrella ☂️!';
     } else if (condition.contains('cloud')) {
-      return 'cloudy. \nGood day to be outside ';
+      return 'cloudy \nGood day to be outside ';
     } else if (condition.contains('sun') || condition.contains('clear')) {
-      return 'sunny. \n😎Sunglasses look good on you 😎!';
+      return 'sunny \n😎Sunglasses look good on you 😎!';
     } else if (condition.contains('snow')) {
-      return 'snowy. \n❄️⛄ Scarves and boots needed ❄️⛄!';
+      return 'snowy \n❄️⛄ Scarves and boots needed ❄️⛄!';
     } else {
       return 'Can\'t get the data of your city';
     }
   }
 
-  List<String> _getWeatherImages(String condition) {
-    if (condition.contains('rain')) {
-      return [
-        'assets/photos/rain/rain-1.jpg',
-        'assets/photos/rain/rain-2.jpg',
-        'assets/photos/rain/rain-3.jpg',
-        'assets/photos/rain/rain-4.jpg',
-        'assets/photos/rain/rain-5.jpg',
-        'assets/photos/rain/rain-6.jpg',
-        'assets/photos/rain/rain-7.jpg',
-      ];
-    } else if (condition.contains('cloud')) {
-      return [
-        '/photos/cloud/cloud-1.jpg',
-        '/photos/cloud/cloud-2.jpg',
-        '/photos/cloud/cloud-3.jpg',
-        '/photos/cloud/cloud-4.jpg',
-        '/photos/cloud/cloud-5.jpg',
-        '/photos/cloud/cloud-6.jpg',
-        '/photos/cloud/cloud-7.jpg',  
-      
-      ];
-    } else if (condition.contains('sun') || condition.contains('clear')) {
-      return [
-        '/photos/clear/clear-1.jpg',
-        '/photos/clear/clear-2.jpg',
-        '/photos/clear/clear-3.jpg',
-        '/photos/clear/clear-4.jpg',
-        '/photos/clear/clear-5.jpg',
-        '/photos/clear/clear-6.jpg',
-        '/photos/clear/clear-7.jpg',
-      ];
-    } else if (condition.contains('snow')) {
-      return [
-        '/photos/snow/snow-1.jpg',
-        '/photos/snow/snow-2.jpg',
-        '/photos/snow/snow-3.jpg',
-        '/photos/snow/snow-4.jpg',
-        '/photos/snow/snow-5.jpg',
-        '/photos/snow/snow-6.jpg',
-        '/photos/snow/snow-7.jpg',
-      ];
-    } else {
-      return [];
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
-    String cityName = 'Istanbul'; // Assign the desired city name here
+    String cityName = 'Rize'; // Assign the desired city name here
 
     return Scaffold(
       appBar: _buildAppBarWithWeather(cityName),
@@ -219,7 +174,7 @@ class _HomePageState extends State<HomePage> {
                               '$cityName seems $weatherText',
                               style: kEncodeSansBold.copyWith(
                                 color: kDarkBrown,
-                                fontSize: 10.0,
+                                fontSize: 18.0,
                               ),
                               textAlign: TextAlign.center, // Center align the text
                             ),
@@ -234,11 +189,11 @@ class _HomePageState extends State<HomePage> {
                             ),
                             const SizedBox(height: 16.0),
                             CarouselSlider(
-                              items: _getWeatherImages(weatherCondition).map((imagePath) {
+                              items: getWeatherImages(weatherCondition).map((imagePath) {
                                 return Image.asset(imagePath);
                               }).toList(),
                               options: CarouselOptions(
-                                viewportFraction: 0.33,
+                                viewportFraction: 0.30,
                                 height: 200.0,
                                 initialPage: 0,
                                 enableInfiniteScroll: true,
