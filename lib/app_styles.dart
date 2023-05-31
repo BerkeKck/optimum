@@ -20,6 +20,16 @@ const Color kLightYellow = Color (0xFFfffee0);
 const Color kBlue = Color (0xFFADD8E6);
 const Color kLightBlue = Color (0xFFe7feff);
 
+const Color darkWhite = Color(0xffF4FAFF);
+const Color yellow = Color(0xffF6AE2D);
+const Color orange = Color(0xFFFB8500);
+const Color black = Color(0xFF212529);
+const Color white = Color(0xFFFAFBFC);
+const Color gray = Color (0xFFCBCBD4);
+const Color backgroundColor = Color.fromARGB(255, 142, 142, 142);
+const Color appBarColor = Color.fromARGB(199, 224, 224, 224);
+const Color navBarColor = Color.fromARGB(199, 224, 224, 224);
+
 
 const double kBorderRadius = 12.0;
 const double kPaddingHorizontal = 12.0;

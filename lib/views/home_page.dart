@@ -65,15 +65,15 @@ class _HomePageState extends State<HomePage> {
               toolbarHeight: 80, // Set the height of the AppBar
               titleSpacing: 0, // Remove the default spacing between title and leading widget
               title: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 5), // Add left padding to the city name
+                    padding: const EdgeInsets.only(right: 4), // Add left padding to the city name
                     child: Text(
                       cityName,
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 15.0,
+                        fontSize:15.0,
                       ),
                     ),
                   ),
@@ -98,7 +98,7 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
               leading: Container(), // Remove the leading back button
-              bottom: PreferredSize(
+              bottom: const PreferredSize(
                 preferredSize: Size.fromHeight(0),
                 child: SizedBox(),
               ),
@@ -131,10 +131,10 @@ class _HomePageState extends State<HomePage> {
   String _getWeatherText(String condition) {
     if (condition.contains('rain')) {
       return 'rainy \n☂️Don\'t forget your umbrella ☂️!';
-    } else if (condition.contains('cloud')) {
+    } else if (condition.contains('clouds')) {
       return 'cloudy \nGood day to be outside ';
     } else if (condition.contains('sun') || condition.contains('clear')) {
-      return 'sunny \n😎Sunglasses look good on you 😎!';
+      return 'sunny \n😎Sunglasses looks good on you 😎!';
     } else if (condition.contains('snow')) {
       return 'snowy \n❄️⛄ Scarves and boots needed ❄️⛄!';
     } else {
@@ -144,98 +144,133 @@ class _HomePageState extends State<HomePage> {
 
 
   @override
-  Widget build(BuildContext context) {
-    String cityName = 'Rize'; // Assign the desired city name here
+Widget build(BuildContext context) {
+  String cityName = 'Ardahan'; // Assign the desired city name here
 
-    return Scaffold(
-      appBar: _buildAppBarWithWeather(cityName),
-      body: SafeArea(
-        child: ListView(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 16.0),
-                  FutureBuilder<Map<String, dynamic>>(
-                    future: fetchWeatherData(cityName),
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        final weatherData = snapshot.data!;
-                        final weatherCondition = weatherData['weatherCondition'];
-                        final temperature = weatherData['temperature'];
-                        String weatherText = _getWeatherText(weatherCondition);
+  return Scaffold(
+    appBar: _buildAppBarWithWeather(cityName),
+    body: SafeArea(
+      child: ListView(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 16.0),
+                FutureBuilder<Map<String, dynamic>>(
+                  future: fetchWeatherData(cityName),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      final weatherData = snapshot.data!;
+                      final weatherCondition = weatherData['weatherCondition'];
+                      final temperature = weatherData['temperature'];
+                      String weatherText = _getWeatherText(weatherCondition);
 
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              '$cityName seems $weatherText',
-                              style: kEncodeSansBold.copyWith(
-                                color: kDarkBrown,
-                                fontSize: 18.0,
-                              ),
-                              textAlign: TextAlign.center, // Center align the text
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            '$cityName seems $weatherText',
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18.0,
+                              color: kDarkBrown,
                             ),
-                            const SizedBox(height: 16.0),
-                            const Text(
-                              'Check out some fits of other people!',
-                              style: TextStyle(
-                                fontSize: 10.0,
-                                color: kDarkGrey,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const SizedBox(height: 16.0),
-                            CarouselSlider(
-                              items: getWeatherImages(weatherCondition).map((imagePath) {
-                                return Image.asset(imagePath);
-                              }).toList(),
-                              options: CarouselOptions(
-                                viewportFraction: 0.30,
-                                height: 200.0,
-                                initialPage: 0,
-                                enableInfiniteScroll: true,
-                                enlargeCenterPage: true,
-                                autoPlay: true,
-                                autoPlayInterval: Duration(seconds: 5),
-                                autoPlayAnimationDuration: Duration(milliseconds: 800),
-                                autoPlayCurve: Curves.fastOutSlowIn,
-                                pauseAutoPlayOnTouch: true,
-                                onPageChanged: (index, reason) {
-                                  setState(() {
-                                    current = index;
-                                  });
-                                },
-                              ),
-                            ),
-                          ],
-                        );
-                      } else if (snapshot.hasError) {
-                        return Text(
-                          '',
-                          style: kEncodeSansBold.copyWith(
-                            color: kDarkBrown,
-                            fontSize: 20.0,
+                            textAlign: TextAlign.center,
                           ),
-                        );
-                      }
-                      return Text(
-                        '',
-                        style: kEncodeSansBold.copyWith(
-                          color: kDarkBrown,
-                          fontSize: 20.0,
-                        ),
+                          const SizedBox(height: 16.0),
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Colors.grey[200],
+                              borderRadius: BorderRadius.circular(30.0),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                const Text(
+                                  '\n Check out some outfits of other people!',
+                                  style: TextStyle(
+                                    fontSize: 13.0,
+                                    color: kDarkGrey,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const SizedBox(height: 16.0),
+                                CarouselSlider(
+                                  items: getWeatherImages(weatherCondition).map((imagePath) {
+                                    return Image.asset(imagePath);
+                                  }).toList(),
+                                  options: CarouselOptions(
+                                    viewportFraction: 0.30,
+                                    height: 250.0,
+                                    initialPage: 0,
+                                    enableInfiniteScroll: true,
+                                    enlargeCenterPage: true,
+                                    autoPlay: true,
+                                    autoPlayInterval: Duration(seconds: 5),
+                                    autoPlayAnimationDuration: Duration(milliseconds: 800),
+                                    autoPlayCurve: Curves.fastOutSlowIn,
+                                    pauseAutoPlayOnTouch: true,
+                                    onPageChanged: (index, reason) {
+                                      setState(() {
+                                        current = index;
+                                      });
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 16.0),
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Colors.grey[200],
+                              borderRadius: BorderRadius.circular(30.0),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  '\n Accessories for $weatherCondition days! ',
+                                  style: const TextStyle(
+                                    fontSize: 13.0,
+                                    color: kDarkGrey,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const SizedBox(height: 5.0),
+                                SizedBox(
+                                  height: 150.0,
+                                  child: ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: 8, // Number of accessories to display
+                                    itemBuilder: (context, index) {
+                                      String imagePath = 'photos/acc$weatherCondition/acc-${index + 1}.jpg';
+                                      return Padding(
+                                        padding: const EdgeInsets.all(10.0),
+                                        child: Image.asset(imagePath),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       );
-                    },
-                  ),
-                ],
-              ),
+                    } else if (snapshot.hasError) {
+                      return Text('');
+                    }
+                    return Text('');
+                  },
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
-    );
-  }
+    ),
+  );
+}
 }

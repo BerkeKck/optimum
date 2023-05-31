@@ -100,6 +100,7 @@ class _WardrobePageState extends State<WardrobePage> {
               leading: Icon(Icons.image),
               title: Text('Select from Gallery'),
               onTap: () {
+                // Handle select from gallery option
               },
             ),
           ],
@@ -212,7 +213,7 @@ class _WardrobePageState extends State<WardrobePage> {
         ),
       ),
       floatingActionButton: Container(
-        margin: EdgeInsets.only(right: 10.0, bottom: 10.0),
+        margin: EdgeInsets.only(right: 5.0, bottom: 5.0),
         child: FloatingActionButton(
           onPressed: _showAddOptions,
           backgroundColor: Colors.grey,
