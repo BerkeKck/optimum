@@ -3,9 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:optimum/src/constant/photos.dart';
-
 import 'package:optimum/app_styles.dart';
+import 'package:optimum/src/constant/photos.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -61,19 +60,20 @@ class _HomePageState extends State<HomePage> {
             }
 
             return AppBar(
-              backgroundColor: Colors.grey, // Set the background color to grey
+              backgroundColor: fieldColor, // Set the background color to grey
               toolbarHeight: 80, // Set the height of the AppBar
               titleSpacing: 0, // Remove the default spacing between title and leading widget
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(right: 4), // Add left padding to the city name
+                    padding: const EdgeInsets.only(right: 0), // Add left padding to the city name
                     child: Text(
                       cityName,
                       style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize:15.0,
+                        fontWeight: FontWeight.w100,
+                        color: lightfieldColor,
+                        fontSize:16.0,
                       ),
                     ),
                   ),
@@ -81,16 +81,17 @@ class _HomePageState extends State<HomePage> {
                     margin: const EdgeInsets.all(60),
                     child: SvgPicture.asset(
                       'assets/icons/${_getWeatherIcon(weatherCondition)}',
-                      width: 60, 
-                      height: 60,
+                      width: 80, 
+                      height: 80,
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(right: 5.0), // Add right padding to the temperature
+                    padding: const EdgeInsets.only(right: 0.0), // Add right padding to the temperature
                     child: Text(
                       '$temperature°C',
                       style: const TextStyle(
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w100,  
+                        color: lightfieldColor,
                         fontSize: 15.0,
                       ),
                     ),
@@ -107,7 +108,7 @@ class _HomePageState extends State<HomePage> {
             return AppBar();
           }
           return AppBar(
-            backgroundColor: Colors.grey, // Set the background color to grey
+            backgroundColor: Colors.white, // Set the background color to grey
           );
         },
       ),
@@ -145,7 +146,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
 Widget build(BuildContext context) {
-  String cityName = 'Ardahan'; // Assign the desired city name here
+  String cityName = 'New York'; // Assign the desired city name here
 
   return Scaffold(
     appBar: _buildAppBarWithWeather(cityName),
@@ -175,14 +176,14 @@ Widget build(BuildContext context) {
                             style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 18.0,
-                              color: kDarkBrown,
+                              color: fieldColor,
                             ),
                             textAlign: TextAlign.center,
                           ),
                           const SizedBox(height: 16.0),
                           Container(
                             decoration: BoxDecoration(
-                              color: Colors.grey[200],
+                              color:fieldColor,
                               borderRadius: BorderRadius.circular(30.0),
                             ),
                             child: Column(
@@ -192,17 +193,17 @@ Widget build(BuildContext context) {
                                   '\n Check out some outfits of other people!',
                                   style: TextStyle(
                                     fontSize: 13.0,
-                                    color: kDarkGrey,
+                                    color: lightfieldColor,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                const SizedBox(height: 16.0),
+                                const SizedBox(height: 1.0),
                                 CarouselSlider(
                                   items: getWeatherImages(weatherCondition).map((imagePath) {
                                     return Image.asset(imagePath);
                                   }).toList(),
                                   options: CarouselOptions(
-                                    viewportFraction: 0.30,
+                                    viewportFraction: 0.34,
                                     height: 250.0,
                                     initialPage: 0,
                                     enableInfiniteScroll: true,
@@ -225,8 +226,8 @@ Widget build(BuildContext context) {
                           const SizedBox(height: 16.0),
                           Container(
                             decoration: BoxDecoration(
-                              color: Colors.grey[200],
-                              borderRadius: BorderRadius.circular(30.0),
+                              color: fieldColor,
+                              borderRadius: BorderRadius.circular(10.0),
                             ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -235,7 +236,7 @@ Widget build(BuildContext context) {
                                   '\n Accessories for $weatherCondition days! ',
                                   style: const TextStyle(
                                     fontSize: 13.0,
-                                    color: kDarkGrey,
+                                    color: lightfieldColor,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),

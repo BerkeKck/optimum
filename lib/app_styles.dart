@@ -26,9 +26,14 @@ const Color orange = Color(0xFFFB8500);
 const Color black = Color(0xFF212529);
 const Color white = Color(0xFFFAFBFC);
 const Color gray = Color (0xFFCBCBD4);
-const Color backgroundColor = Color.fromARGB(255, 142, 142, 142);
-const Color appBarColor = Color.fromARGB(199, 224, 224, 224);
-const Color navBarColor = Color.fromARGB(199, 224, 224, 224);
+const Color backgroundColor = Color (0xFFc2c8c5);
+const Color appBarColor = Color(0xFF7697A0);
+const Color navBarColor = Color (0xFFA6C3A2);
+const Color navBarColor2 = Color (0xFFb2c5b2);
+const Color fieldColor = Color (0xFF4a707a);
+const Color lightfieldColor= Color (0xFFddddda);
+
+
 
 
 const double kBorderRadius = 12.0;

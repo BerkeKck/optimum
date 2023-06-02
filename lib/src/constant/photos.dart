@@ -1,3 +1,6 @@
+import 'package:flutter/services.dart' show rootBundle;
+import 'dart:typed_data';
+
 class Photos {
   static const String _assetPath = '/photos/';
 
@@ -25,15 +28,23 @@ class Photos {
 
   ];
 
-  static List<String> generateAssetPaths(String category, int count) {
-    List<String> assetPaths = [];
-    String folderName = category.toLowerCase();
-    for (int i = 1; i <= count; i++) {
-      String assetPath = '$_assetPath$folderName/$category-$i.jpg';
+ static List<String> generateAssetPaths(String category, int maxCount) {
+  List<String> assetPaths = [];
+  String folderName = category.toLowerCase();
+  int count = 1;
+  while (true) {
+    String assetPath = '$_assetPath$folderName/$category-$count.jpg';
+    try {
+      rootBundle.load(assetPath);
       assetPaths.add(assetPath);
+      count++;
+      if (count > maxCount) break;
+    } catch (e) {
+      break;
     }
-    return assetPaths;
   }
+  return assetPaths;
+}
 }
 
 //carousel resimleri

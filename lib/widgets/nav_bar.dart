@@ -1,17 +1,17 @@
 import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:flutter/material.dart';
-import 'package:optimum/views/home_page.dart';
-import 'package:optimum/views/combine_page.dart';
-import 'package:optimum/views/wardrobe_page.dart';
+import 'package:optimum/app_styles.dart';
+
 
 class CustomNavigationBar extends StatelessWidget {
   final int currentIndex;
   final Function(int) onTabTapped;
 
-  CustomNavigationBar({
+  const CustomNavigationBar({
+    Key? key,
     required this.currentIndex,
     required this.onTabTapped,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,29 +20,35 @@ class CustomNavigationBar extends StatelessWidget {
       onItemSelected: onTabTapped,
       items: [
         FlashyTabBarItem(
-          icon: IconTheme(
-            data: IconThemeData(color: currentIndex == 0 ? Colors.black : Colors.grey),
-            child: Image.asset('assets/images/home.png', width: 24, height: 24),
+          icon: Image.asset('assets/images/home.png', width: 24, height: 24),
+          title: Text(
+            'HOME',
+            style: TextStyle(
+              color: currentIndex == 0 ? lightfieldColor : Colors.grey,
+            ),
           ),
-          title: Text('Home'),
         ),
         FlashyTabBarItem(
-          icon: IconTheme(
-            data: IconThemeData(color: currentIndex == 1 ? Colors.black : Colors.grey),
-            child: Image.asset('assets/images/combine.png', width: 24, height: 24),
+          icon: Image.asset('assets/images/combine.png', width: 24, height: 24),
+          title: Text(
+            'COMBINE',
+            style: TextStyle(
+              color: currentIndex == 1 ? lightfieldColor : Colors.grey,
+            ),
           ),
-          title: Text('Combine'),
         ),
         FlashyTabBarItem(
-          icon: IconTheme(
-            data: IconThemeData(color: currentIndex == 2 ? Colors.black : Colors.grey),
-            child: Image.asset('assets/images/wardrobe.png', width: 24, height: 24),
+          icon: Image.asset('assets/images/wardrobe.png', width: 24, height: 24),
+          title: Text(
+            'WARDROBE', 
+            style: TextStyle(
+              color: currentIndex == 2 ? lightfieldColor : Colors.grey,
+            ),
           ),
-          title: Text('Wardrobe'),
         ),
       ],
-      backgroundColor: const Color.fromARGB(255, 212, 212, 212), // Customize the background color
-      animationCurve: Curves.easeInOut, // Customize the animation curve
+      backgroundColor: fieldColor , // Customize the background color
+      animationCurve: Curves.easeIn, // Customize the animation curve
       animationDuration: const Duration(milliseconds: 200), // Customize the animation duration
     );
   }

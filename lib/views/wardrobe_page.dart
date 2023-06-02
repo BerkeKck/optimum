@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:optimum/app_styles.dart';
 import 'package:optimum/src/constant/photos.dart';
 
 class WardrobePage extends StatefulWidget {
@@ -24,6 +25,7 @@ class _WardrobePageState extends State<WardrobePage> {
   ];
 
   List<String> _photos = [];
+  int _selectedPhotoIndex = -1;
 
   @override
   void initState() {
@@ -81,42 +83,13 @@ class _WardrobePageState extends State<WardrobePage> {
     }
   }
 
-  void _showAddOptions() {
-  showModalBottomSheet<void>(
-    context: context,
-    builder: (BuildContext context) {
-      return Container(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            ListTile(
-              leading: Icon(Icons.camera),
-              title: Text('Open Camera'),
-              onTap: () {
-                // Handle open camera option
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.image),
-              title: Text('Select from Gallery'),
-              onTap: () {
-                // Handle select from gallery option
-              },
-            ),
-          ],
-        ),
-      );
-    },
-  );
-}
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(45.0),
         child: AppBar(
-          backgroundColor: Color.fromARGB(255, 122, 122, 122),
+          backgroundColor: fieldColor,
           automaticallyImplyLeading: false,
           title: Text(
             'My Wardrobe',
@@ -129,13 +102,15 @@ class _WardrobePageState extends State<WardrobePage> {
         ),
       ),
       body: Container(
-        color: Color.fromARGB(255, 142, 142, 142),
+        color: lightfieldColor,
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.only(top: 3.0, bottom: 3.0),
+              padding: EdgeInsets.only(top: 10.0, bottom: 3.0),
               child: Container(
-                height: 25.0,
+                padding: EdgeInsets.all(3),
+                color: appBarColor, // kategori renk
+                height: 30.0,
                 child: ListView.builder(
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
@@ -154,7 +129,7 @@ class _WardrobePageState extends State<WardrobePage> {
                       child: Container(
                         padding: EdgeInsets.symmetric(horizontal: 16.0),
                         decoration: BoxDecoration(
-                          color: isSelected ? Colors.white : null,
+                          color: isSelected ? lightfieldColor : null,
                           borderRadius: BorderRadius.circular(30.0),
                         ),
                         child: Text(
@@ -187,7 +162,7 @@ class _WardrobePageState extends State<WardrobePage> {
                   return GridView.builder(
                     padding: const EdgeInsets.all(8.0),
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
+                      crossAxisCount: 3,
                       crossAxisSpacing: 8.0,
                       mainAxisSpacing: 8.0,
                       childAspectRatio: 0.8,
@@ -195,14 +170,56 @@ class _WardrobePageState extends State<WardrobePage> {
                     itemCount: _photos.length,
                     itemBuilder: (context, index) {
                       String photoPath = _photos[index];
-                      return Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8.0),
-                          image: DecorationImage(
-                            image: AssetImage(photoPath),
-                            fit: BoxFit.cover,
+                      bool isSelected = _selectedPhotoIndex == index;
+
+                      return Stack(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                if (_selectedPhotoIndex == index) {
+                                  _selectedPhotoIndex = -1; // Deselect the photo
+                                } else {
+                                  _selectedPhotoIndex = index; // Select the photo
+                                }
+                              });
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8.0),
+                                image: DecorationImage(
+                                  image: AssetImage(photoPath),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
+                          if (isSelected)
+                            Positioned(
+                              top: 5.0,
+                              right: 5.0,
+                              child: GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    _photos.removeAt(_selectedPhotoIndex);
+                                    _selectedPhotoIndex = -1;
+                                  });
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.red,
+                                  ),
+                                  padding: EdgeInsets.all(2.0),
+                                  child: Icon(
+                                    Icons.remove,
+                                    color: Colors.white,
+                                    size: 12.0,
+                                  ),
+                                ),
+                              ),
+                            ),
+                        ],
                       );
                     },
                   );
@@ -216,10 +233,40 @@ class _WardrobePageState extends State<WardrobePage> {
         margin: EdgeInsets.only(right: 5.0, bottom: 5.0),
         child: FloatingActionButton(
           onPressed: _showAddOptions,
-          backgroundColor: Colors.grey,
+          backgroundColor: Color(0xFF2F4F4F),
           child: Icon(Icons.add),
         ),
       ),
+    );
+  }
+
+  void _showAddOptions() {
+    showModalBottomSheet<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          color: Color(0xFFc2c8c5),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              ListTile(
+                leading: Icon(Icons.camera),
+                title: Text('Open Camera'),
+                onTap: () {
+                  // Handle open camera option
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.image),
+                title: Text('Select from Gallery'),
+                onTap: () {
+                  // Handle select from gallery option
+                },
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }
