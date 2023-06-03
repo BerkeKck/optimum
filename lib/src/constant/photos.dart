@@ -1,33 +1,70 @@
 import 'package:flutter/services.dart' show rootBundle;
-import 'dart:typed_data';
 
 class Photos {
+  static  List<String> category = [
+    'All',
+    'Tshirt',
+    'Top',
+    'Coat',
+    'Hoodie',
+    'Pants',
+    'Shoes',
+    'Skirt',
+    'Dress',
+    'Handbags',
+    'Heel',
+    'Boot',
+    'Casual',
+  ];
+
   static const String _assetPath = '/photos/';
-
-
-  static List<String> tshirtPhotos = generateAssetPaths('Tshirt', 5);
-  static List<String> pantsPhotos = generateAssetPaths('Pants', 8);
-  static List<String> shoesPhotos = generateAssetPaths('Shoes', 8);
-  static List<String> dressPhotos = generateAssetPaths('Dress', 6);
-  static List<String> skirtsPhotos = generateAssetPaths('Skirt', 8);
-  static List<String> handbagPhotos = generateAssetPaths('Handbags', 9);
+ 
+  //tops
   static List<String> topPhotos = generateAssetPaths('Top', 10);
   static List<String> coatPhotos = generateAssetPaths('Coat', 3); 
-  static List<String> hoodiePhotos = generateAssetPaths('Hoodie', 6); 
+  static List<String> hoodiePhotos = generateAssetPaths('Hoodie', 6);
+  static List<String> tshirtPhotos = generateAssetPaths('Tshirt', 5);
+  static List<String> dressPhotos = generateAssetPaths('Dress', 6); 
+  // bottoms
+  static List<String> skirtsPhotos = generateAssetPaths('Skirt', 8);
+  static List<String> pantsPhotos = generateAssetPaths('Pants', 8);
+  //shoes
+  static List<String> heelPhotos = generateAssetPaths('Heel', 3);  
+  static List<String> bootPhotos = generateAssetPaths('Boot', 3); 
+  static List<String> casualPhotos = generateAssetPaths('Casual', 3);
+   //accesories
+   static List<String> handbagPhotos = generateAssetPaths('Handbags', 9);
 
-  static List<String> allPhotos = [
-    ...tshirtPhotos,
-    ...pantsPhotos,
-    ...shoesPhotos,
-    ...dressPhotos,
-    ...skirtsPhotos,
-    ...handbagPhotos,
+  static List<String> allPhotos = [ //ALL
+    ...bottomsPhotos,
+    ...topsPhotos,
+    ...shoesPhotos, 
+    ...accessoriesPhotos,
+  ];
+  
+  static List<String> topsPhotos = [  //TOPS
     ...topPhotos,
     ...coatPhotos,
     ...hoodiePhotos,
-
+    ...tshirtPhotos,
+    ...dressPhotos,
   ];
 
+  static List<String> bottomsPhotos = [  //BOTTOM
+    ...skirtsPhotos,
+    ...pantsPhotos,
+  ];
+
+  static List<String> shoesPhotos = [   //SHOES
+    ...heelPhotos,
+    ...bootPhotos,
+    ...casualPhotos,
+  ];
+  
+  static List<String> accessoriesPhotos = [   //ACCESORIES
+    ...handbagPhotos,
+  ];
+  
  static List<String> generateAssetPaths(String category, int maxCount) {
   List<String> assetPaths = [];
   String folderName = category.toLowerCase();
@@ -46,6 +83,7 @@ class Photos {
   return assetPaths;
 }
 }
+
 
 //carousel resimleri
 List<String> getWeatherImages(String condition) {

@@ -11,10 +11,10 @@ class WardrobePage extends StatefulWidget {
 
 class _WardrobePageState extends State<WardrobePage> {
   int _selectedCategoryIndex = 0;
-  List<String> _categories = [
+  final List<String> _categories = [
     'All',
     'Tshirt',
-    'Tops',
+    'Top',
     'Coat',
     'Hoodie',
     'Pants',
@@ -37,14 +37,10 @@ class _WardrobePageState extends State<WardrobePage> {
     if (_selectedCategoryIndex == 0) {
       // All category selected, show all photos
       _photos = [
-        ...Photos.tshirtPhotos,
-        ...Photos.pantsPhotos,
+        ...Photos.topsPhotos,
+        ...Photos.bottomsPhotos,
         ...Photos.shoesPhotos,
-        ...Photos.dressPhotos,
-        ...Photos.skirtsPhotos,
-        ...Photos.handbagPhotos,
-        ...Photos.coatPhotos,
-        ...Photos.hoodiePhotos,
+        ...Photos.accessoriesPhotos,
       ];
     } else {
       // Filter photos based on selected category
@@ -74,7 +70,7 @@ class _WardrobePageState extends State<WardrobePage> {
         case 'Hoodie':
           _photos = Photos.hoodiePhotos;
           break;
-        case 'Tops':
+        case 'Top':
           _photos = Photos.topPhotos;
           break;
         default:

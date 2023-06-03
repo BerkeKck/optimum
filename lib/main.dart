@@ -15,7 +15,7 @@ class _OptimumState extends State<Optimum> {
   int _currentIndex = 0;
   final List<Widget> _pages = [
     HomePage(),
-    CombinePage(),
+    CombinePage(weatherCondition: '',),
     WardrobePage(),
   ];
 
@@ -29,15 +29,6 @@ class _OptimumState extends State<Optimum> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          selectedItemColor: const Color.fromARGB(255, 0, 0, 0), // Customize the selected item color
-          unselectedItemColor: Colors.grey, // Customize the unselected item color
-          selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold), // Customize the selected label style
-          showSelectedLabels: true, // Show labels for selected items only
-          showUnselectedLabels: false, // Hide labels for unselected items
-        ),
-      ),
       home: Scaffold(
         body: _pages[_currentIndex],
         bottomNavigationBar: CustomNavigationBar(

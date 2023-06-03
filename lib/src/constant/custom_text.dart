@@ -38,3 +38,4 @@ class CustomText extends StatelessWidget {
     );
   }
 }
+
