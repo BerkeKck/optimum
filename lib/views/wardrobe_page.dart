@@ -229,7 +229,7 @@ class _WardrobePageState extends State<WardrobePage> {
         margin: EdgeInsets.only(right: 5.0, bottom: 5.0),
         child: FloatingActionButton(
           onPressed: _showAddOptions,
-          backgroundColor: Color(0xFF2F4F4F),
+          backgroundColor: appBarColor,
           child: Icon(Icons.add),
         ),
       ),

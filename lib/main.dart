@@ -14,9 +14,9 @@ class Optimum extends StatefulWidget {
 class _OptimumState extends State<Optimum> {
   int _currentIndex = 0;
   final List<Widget> _pages = [
-    HomePage(),
+    const HomePage(),
     CombinePage(weatherCondition: '',),
-    WardrobePage(),
+    const WardrobePage(),
   ];
 
   void _onTabTapped(int index) {

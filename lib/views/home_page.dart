@@ -146,7 +146,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
 Widget build(BuildContext context) {
-  String cityName = 'Moscow'; // Assign the desired city name here
+  String cityName = 'Giresun'; // Assign the desired city name here
 
   return Scaffold(
     appBar: _buildAppBarWithWeather(cityName),

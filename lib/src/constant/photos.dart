@@ -15,6 +15,7 @@ class Photos {
     'Heel',
     'Boot',
     'Casual',
+    
   ];
 
   static const String _assetPath = '/photos/';
@@ -63,6 +64,10 @@ class Photos {
   
   static List<String> accessoriesPhotos = [   //ACCESORIES
     ...handbagPhotos,
+  ];
+  static List<String> alternativeTopPhotos = [   //ALTERNATIVETOPS
+    ...tshirtPhotos,
+    ...topPhotos,
   ];
   
  static List<String> generateAssetPaths(String category, int maxCount) {
