@@ -1,7 +1,7 @@
 # optimum 
  Optimum is an app that I developed with flutter. 
 I used https://openweathermap.org/ API to fetch weatherData,
-Optimum, brings different outfits depending on weatherCondition. 
+Optimum, generates different outfits depending on weatherCondition and shows you different outfit ideas and accesories for your location's weather. 
 
 
 ![image](https://github.com/BerkeKck/optimum/assets/84639060/1fed0c61-c223-420a-8ff8-54dabc84b398)
