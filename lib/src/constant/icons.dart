@@ -12,6 +12,7 @@ class IconlyBroken {
   static const String rainy =   '${_assetPath}rainy.svg';
   static const String snowy =   '${_assetPath}snowy.svg';
   static const String defau =   '${_assetPath}default.svg';
+  static const String foggy=    '${_assetPath}foggy.svg';
 
 //
   static const String search =        '${_assetPath}search.svg';

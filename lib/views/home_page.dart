@@ -57,6 +57,8 @@ class _HomePageState extends State<HomePage> {
               weatherText = 'snowy';
             } else if (weatherCondition.contains('cloud')) {
               weatherText = 'cloudy';
+            } else if (weatherCondition.contains('fog')) {
+              weatherText = 'foggy';
             }
 
             return AppBar(
@@ -78,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   Container(
-                    margin: const EdgeInsets.all(60),
+                    margin: const EdgeInsets.all(20),
                     child: SvgPicture.asset(
                       'assets/icons/${_getWeatherIcon(weatherCondition)}',
                       width: 80, 
@@ -122,6 +124,8 @@ class _HomePageState extends State<HomePage> {
       return 'cloudy.svg';
     } else if (condition.contains('sun') || condition.contains('clear')) {
       return 'sunny.svg';
+    } else if (condition.contains('fog')) {
+      return 'foggy.svg';
     } else if (condition.contains('snow')) {
       return 'snowy.svg';
     } else {
@@ -138,15 +142,18 @@ class _HomePageState extends State<HomePage> {
       return 'sunny \n😎Sunglasses looks good on you 😎!';
     } else if (condition.contains('snow')) {
       return 'snowy \n❄️⛄ Scarves and boots needed ❄️⛄!';
+    } else if (condition.contains('fog')) {
+      return 'foggy today';
     } else {
       return 'Can\'t get the data of your city';
     }
   }
+      
 
 
   @override
 Widget build(BuildContext context) {
-  String cityName = 'Giresun'; // Assign the desired city name here
+  String cityName = 'Tasiilaq'; // Assign the desired city name here
 
   return Scaffold(
     appBar: _buildAppBarWithWeather(cityName),

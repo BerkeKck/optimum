@@ -89,7 +89,6 @@ class Photos {
 }
 }
 
-
 //carousel resimleri
 List<String> getWeatherImages(String condition) {
     if (condition.contains('rain')) {

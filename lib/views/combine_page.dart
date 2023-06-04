@@ -47,16 +47,19 @@ class _CombinePageState extends State<CombinePage> {
   Future<void> loadPhotos() async {
     final List<Future<void>> futures = [];
 
-    // Load Tops Photos
-    if (widget.weatherCondition.contains('rain')) {
-      topsCategories = ['hoodie', 'top', 'coat'];
-    } else if (widget.weatherCondition.contains('snow')) {
-      topsCategories = ['hoodie', 'coat'];
-    } else if (widget.weatherCondition.contains('clear')) {
-      topsCategories = ['dress','top'];
-    } else if (widget.weatherCondition.contains('cloud')) {
-      topsCategories = ['top', 'dress', 'hoodie', 'tshirt'];
-    }
+  if (widget.weatherCondition.contains('clear')) {
+    topsCategories.remove('coat');
+  }
+     // Load Tops Photos
+  if (widget.weatherCondition.contains('rain')) {
+    topsCategories = ['hoodie', 'top', 'coat'];
+  } else if (widget.weatherCondition.contains('snow')) {
+    topsCategories = ['hoodie', 'coat'];
+  } else if (widget.weatherCondition.contains('clear')) {
+    topsCategories = ['dress', 'top'];
+  } else if (widget.weatherCondition.contains('cloud')) {
+    topsCategories = ['top', 'dress', 'hoodie', 'tshirt'];
+  }
 
     for (var category in topsCategories) {
       List<String> categoryPaths = generatePaths(category);
